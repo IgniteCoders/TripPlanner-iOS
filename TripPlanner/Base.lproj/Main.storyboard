@@ -115,21 +115,24 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Google"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="Google" title="Google"/>
+                                                <connections>
+                                                    <action selector="signInWithGoogle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lAu-Mg-Ln2"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nm-Cy-ZsW">
                                                 <rect key="frame" x="58" y="616" width="277" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Apple"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="Apple" title="Apple"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-uf-V82">
                                                 <rect key="frame" x="58" y="659" width="277" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" systemColor="systemBlueColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Facebook"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="Facebook" title="Facebook"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -150,11 +153,12 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <keyboardLayoutGuide key="keyboard" id="1p2-1r-b9A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qOW-LE-N52" secondAttribute="bottom" id="0Iw-1w-exa"/>
                             <constraint firstItem="qOW-LE-N52" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1IT-Cp-38j"/>
                             <constraint firstItem="qOW-LE-N52" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="def-vi-cse"/>
+                            <constraint firstItem="1p2-1r-b9A" firstAttribute="top" secondItem="qOW-LE-N52" secondAttribute="bottom" id="sQA-T5-E6Y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qOW-LE-N52" secondAttribute="trailing" id="yBO-h1-O0r"/>
                         </constraints>
                     </view>
@@ -345,11 +349,12 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NBT-8M-NeN"/>
+                        <keyboardLayoutGuide key="keyboard" id="AjE-e1-WbC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3pL-GL-res" firstAttribute="top" secondItem="NBT-8M-NeN" secondAttribute="top" id="5iZ-Fu-skN"/>
                             <constraint firstItem="3pL-GL-res" firstAttribute="leading" secondItem="NBT-8M-NeN" secondAttribute="leading" id="Lye-7d-vC1"/>
-                            <constraint firstItem="NBT-8M-NeN" firstAttribute="bottom" secondItem="3pL-GL-res" secondAttribute="bottom" id="PkX-WY-XaH"/>
+                            <constraint firstItem="AjE-e1-WbC" firstAttribute="top" secondItem="3pL-GL-res" secondAttribute="bottom" id="PkX-WY-XaH"/>
                             <constraint firstItem="3pL-GL-res" firstAttribute="trailing" secondItem="NBT-8M-NeN" secondAttribute="trailing" id="hRC-gK-p8c"/>
                         </constraints>
                     </view>
@@ -390,27 +395,30 @@
     </scenes>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
+        <image name="Apple" width="24" height="24"/>
+        <image name="Facebook" width="24" height="24"/>
+        <image name="Google" width="24" height="24"/>
         <image name="app.grid" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.38039215686274508" green="0.33333333333333331" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

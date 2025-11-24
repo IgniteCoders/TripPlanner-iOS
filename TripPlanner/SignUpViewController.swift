@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController {
         let email = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        Auth.auth().createUser(withEmail: email, password: password) { [unowned self] authResult, error in
             if let error = error {
                 print(error.localizedDescription)
                 self.showMessage(message: error.localizedDescription)
