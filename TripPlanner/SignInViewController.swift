@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
+import FirebaseFirestore
 
 class SignInViewController: UIViewController {
 
@@ -55,14 +56,14 @@ class SignInViewController: UIViewController {
                 return
             }
 
-            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+            guard let googleUser = result?.user, let idToken = googleUser.idToken?.tokenString else {
                 showMessage(message: "Unxpected error has occurred.")
                 return
             }
 
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: googleUser.accessToken.tokenString)
 
-            Auth.auth().signIn(with: credential) { [unowned self] result, error in
+            Auth.auth().signIn(with: credential) { [unowned self] authResult, error in
                 if let error = error {
                     print(error.localizedDescription)
                     self.showMessage(message: error.localizedDescription)
@@ -71,7 +72,46 @@ class SignInViewController: UIViewController {
                 
                 print("User signed in successfully")
                 
-                self.performSegue(withIdentifier: "Navigate To Home", sender: nil)
+                Task {
+                    let userId = authResult!.user.uid
+                    
+                    let db = Firestore.firestore()
+                    let docReference = db.collection("Users").document(userId)
+                    
+                    do {
+                        let document = try await docReference.getDocument()
+                        if !document.exists {
+                            let email = googleUser.profile?.email ?? authResult!.user.email!
+                            let firstName = googleUser.profile?.givenName ?? ""
+                            let lastName = googleUser.profile?.familyName ?? ""
+                            let gender = 2
+                            
+                            let user = User(id: userId, firstName: firstName, lastName: lastName, email: email, gender: gender, birthDate: nil)
+                            DispatchQueue.main.async {
+                                do {
+                                    let db = Firestore.firestore()
+                                    try db.collection("Users").document(userId).setData(from: user)
+                                } catch let error {
+                                   print("Error writing user to Firestore: \(error)")
+                                   DispatchQueue.main.async {
+                                       self.showMessage(message: error.localizedDescription)
+                                   }
+                                   return
+                               }
+                            }
+                        }
+                    } catch let error {
+                        print("Error writing user to Firestore: \(error)")
+                        DispatchQueue.main.async {
+                            self.showMessage(message: error.localizedDescription)
+                        }
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "Navigate To Home", sender: nil)
+                    }
+                }
             }
         }
     }

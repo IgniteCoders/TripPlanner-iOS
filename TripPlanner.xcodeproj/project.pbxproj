@@ -11,6 +11,7 @@
 		6C4285082ECF229A000B78B9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4285072ECF229A000B78B9 /* FirebaseAuth */; };
 		6CE10C4E2ED47B3400C75D96 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6CE10C4D2ED47B3400C75D96 /* GoogleSignIn */; };
 		6CE10C502ED47B3400C75D96 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CE10C4F2ED47B3400C75D96 /* GoogleSignInSwift */; };
+		6CE32C372ED5CC600068AD71 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6CE32C362ED5CC600068AD71 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 				6C4285062ECF229A000B78B9 /* FirebaseAnalytics in Frameworks */,
 				6C4285082ECF229A000B78B9 /* FirebaseAuth in Frameworks */,
 				6CE10C4E2ED47B3400C75D96 /* GoogleSignIn in Frameworks */,
+				6CE32C372ED5CC600068AD71 /* FirebaseFirestore in Frameworks */,
 				6CE10C502ED47B3400C75D96 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +95,7 @@
 				6C4285072ECF229A000B78B9 /* FirebaseAuth */,
 				6CE10C4D2ED47B3400C75D96 /* GoogleSignIn */,
 				6CE10C4F2ED47B3400C75D96 /* GoogleSignInSwift */,
+				6CE32C362ED5CC600068AD71 /* FirebaseFirestore */,
 			);
 			productName = TripPlanner;
 			productReference = 6C4284EA2ECF1C70000B78B9 /* TripPlanner.app */;
@@ -400,6 +403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6CE10C4C2ED47B3400C75D96 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		6CE32C362ED5CC600068AD71 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C4285042ECF229A000B78B9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
