@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SignInViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1265"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOW-LE-N52">
-                                <rect key="frame" x="0.0" y="172" width="393" height="1025"/>
+                                <rect key="frame" x="0.0" y="172" width="393" height="612"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mec-1u-Jpl" userLabel="Scroll Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="750"/>
@@ -166,43 +166,119 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign in" id="ilJ-JA-ujg"/>
-                    <size key="freeformSize" width="393" height="1265"/>
                     <connections>
                         <outlet property="passwordTextField" destination="zqm-1s-K8S" id="myK-Z1-T8P"/>
                         <outlet property="usernameTextField" destination="cxN-ZF-5fL" id="fBL-Q8-2Nc"/>
-                        <segue destination="ZiR-zU-Dwq" kind="show" identifier="Navigate To Home" id="6CS-Wr-Fz4"/>
+                        <segue destination="fbQ-8q-id4" kind="show" identifier="Navigate To Home" id="71o-hD-38h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686.25954198473278" y="194.01408450704227"/>
+            <point key="canvasLocation" x="685" y="49"/>
         </scene>
-        <!--View Controller-->
+        <!--My trips-->
+        <scene sceneID="Jjh-a9-eZa">
+            <objects>
+                <viewController id="nc5-Qn-zWc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WAT-ya-FDe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="R35-Gz-1dD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My trips" id="BTu-C8-6ig"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7U-7P-2Bu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-245" y="2415"/>
+        </scene>
+        <!--New trip-->
+        <scene sceneID="2zb-sl-pMY">
+            <objects>
+                <viewController id="SNe-sr-66S" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VPG-Ym-cEH">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="x6y-xK-6Aw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New trip" id="8rT-6A-AGg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qlW-0s-dcu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="685" y="2415"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="bOa-a0-BHf">
+            <objects>
+                <tabBarController id="fbQ-8q-id4" customClass="MainViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hyf-ue-6yV"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PHI-lx-NY1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemIndigoColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vs8-uC-cSO" kind="relationship" relationship="viewControllers" id="cw0-ef-PQP"/>
+                        <segue destination="5sh-ly-ZwY" kind="relationship" relationship="viewControllers" id="GM4-fL-2tP"/>
+                        <segue destination="CV2-Ku-wuW" kind="relationship" relationship="viewControllers" id="ntm-JH-lod"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hvz-Pp-gfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="685" y="849"/>
+        </scene>
+        <!--Settings-->
         <scene sceneID="xdB-7W-bc2">
             <objects>
-                <viewController id="ZiR-zU-Dwq" sceneMemberID="viewController">
+                <viewController id="ZiR-zU-Dwq" customClass="SettingsViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R25-9A-loX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-r7-Pqu">
+                                <rect key="frame" x="0.0" y="172" width="393" height="563"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-F5-y6e">
+                                        <rect key="frame" x="153" y="520" width="87" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign out"/>
+                                        <connections>
+                                            <action selector="signOut:" destination="ZiR-zU-Dwq" eventType="touchUpInside" id="cf6-qU-zYL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3X9-gf-LSW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d2Q-r7-Pqu" firstAttribute="top" secondItem="3X9-gf-LSW" secondAttribute="top" id="2M5-Xc-wCZ"/>
+                            <constraint firstItem="3X9-gf-LSW" firstAttribute="trailing" secondItem="d2Q-r7-Pqu" secondAttribute="trailing" id="P7h-kp-Mym"/>
+                            <constraint firstItem="3X9-gf-LSW" firstAttribute="bottom" secondItem="d2Q-r7-Pqu" secondAttribute="bottom" id="Ua7-W3-ZqX"/>
+                            <constraint firstItem="d2Q-r7-Pqu" firstAttribute="leading" secondItem="3X9-gf-LSW" secondAttribute="leading" id="ib9-Ns-QAj"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eHM-H2-gro"/>
+                    <navigationItem key="navigationItem" title="Settings" id="eHM-H2-gro"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKi-Ym-OFt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-245" y="768"/>
+            <point key="canvasLocation" x="1621" y="2415"/>
         </scene>
         <!--Create account-->
         <scene sceneID="Rpu-dM-vIf">
             <objects>
                 <viewController id="3CT-he-I9e" customClass="SignUpViewController" customModule="TripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rzw-NO-qTh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1386"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pL-GL-res">
-                                <rect key="frame" x="0.0" y="172" width="393" height="1146"/>
+                                <rect key="frame" x="0.0" y="172" width="393" height="612"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9A-bK-iNk" userLabel="Scroll Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
@@ -362,7 +438,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create account" id="2MX-SO-duj"/>
-                    <size key="freeformSize" width="393" height="1386"/>
                     <connections>
                         <outlet property="birthDatePicker" destination="OJ4-ip-jWH" id="kvb-iS-3He"/>
                         <outlet property="firstNameTextField" destination="Let-mh-WPH" id="Ze2-qI-s7w"/>
@@ -375,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1g-nX-I7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626.7175572519084" y="235.91549295774649"/>
+            <point key="canvasLocation" x="1621" y="49"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bj9-Ff-3Sv">
@@ -395,33 +470,96 @@
             </objects>
             <point key="canvasLocation" x="-244" y="49"/>
         </scene>
+        <!--My trips-->
+        <scene sceneID="9hA-qS-fyC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vs8-uC-cSO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My trips" image="airplane.circle" catalog="system" selectedImage="airplane.circle.fill" id="kKd-I9-lFr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wq7-5j-Kh4">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nc5-Qn-zWc" kind="relationship" relationship="rootViewController" id="gYk-2U-XYT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OUo-ux-XRO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-245.03816793893128" y="1638.7323943661972"/>
+        </scene>
+        <!--New trip-->
+        <scene sceneID="K4N-rm-Clg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5sh-ly-ZwY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="New trip" image="plus.circle" catalog="system" selectedImage="plus.circle.fill" id="bRe-Cn-qxT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hgQ-Ir-wsS">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SNe-sr-66S" kind="relationship" relationship="rootViewController" id="MJl-gB-2cQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UBb-bf-eKt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684.73282442748086" y="1638.7323943661972"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="5Df-he-8yV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CV2-Ku-wuW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear.circle" catalog="system" selectedImage="gear.circle.fill" id="iIx-mT-wCx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Fd-hd-8Sj">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZiR-zU-Dwq" kind="relationship" relationship="rootViewController" id="Arr-jW-sVc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqN-Ly-2pn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620.6106870229007" y="1638.7323943661972"/>
+        </scene>
     </scenes>
     <color key="tintColor" systemColor="systemIndigoColor"/>
     <resources>
         <image name="Apple" width="24" height="24"/>
         <image name="Facebook" width="24" height="24"/>
         <image name="Google" width="24" height="24"/>
+        <image name="airplane.circle" catalog="system" width="128" height="123"/>
+        <image name="airplane.circle.fill" catalog="system" width="128" height="123"/>
         <image name="app.grid" catalog="system" width="128" height="114"/>
+        <image name="gear.circle" catalog="system" width="128" height="123"/>
+        <image name="gear.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38039215686274508" green="0.33333333333333331" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
