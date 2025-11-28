@@ -32,7 +32,29 @@ class CreateTripViewController: UIViewController {
     }
     
     @IBAction func addDestination(_ sender: Any) {
+        let destination = addDestinationTextField.text!
         
+        /*let destinationView = DestinationView()
+        destinationView.titleLabel.text = destination
+        destinationsStackView.addArrangedSubview(destinationView)*/
+        
+        let nib = UINib(nibName: "DestinationViewCell", bundle: nil)
+        let view = nib.instantiate(withOwner: nil, options: nil).first as! DestinationView
+        view.titleLabel.text = destination
+        view.onRemoveClick = {
+            self.destinations.remove(at: self.destinations.firstIndex(of: destination)!)
+            view.removeFromSuperview()
+        }
+        destinationsStackView.addArrangedSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: destinationsStackView.leadingAnchor, constant: 0),
+            view.trailingAnchor.constraint(equalTo: destinationsStackView.trailingAnchor, constant: 0)
+        ])
+        
+        destinations.append(destination)
+        
+        addDestinationTextField.text = ""
     }
     
     @IBAction func createTrip(_ sender: Any) {
