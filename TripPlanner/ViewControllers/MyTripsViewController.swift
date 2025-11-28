@@ -76,13 +76,22 @@ class MyTripsViewController: UIViewController, UITableViewDataSource {
             let db = Firestore.firestore()
             let querySnapshot = try await db.collection("Participants").whereField("tripId", isEqualTo: tripId).getDocuments()
             for document in querySnapshot.documents {
-                let participant = try document.data(as: Participant.self)
+                var participant = try document.data(as: Participant.self)
+                participant.id = document.documentID
                 participants.append(participant)
             }
         } catch {
             print("Error reading chats from Firestore: \(error)")
         }
         return participants
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let voteViewController = segue.destination as! VoteViewController
+        let indexPath = tableView.indexPathForSelectedRow!
+        let trip = trips[indexPath.row]
+        voteViewController.trip = trip
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

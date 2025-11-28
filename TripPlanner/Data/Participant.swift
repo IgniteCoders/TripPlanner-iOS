@@ -8,6 +8,7 @@
 import Foundation
 
 struct Participant: Codable {
+    var id: String? = nil
     let userId: String
     let tripId: String
     var fromDate: Int64? = nil

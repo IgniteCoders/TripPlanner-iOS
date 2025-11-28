@@ -15,7 +15,7 @@ struct Trip: Codable {
     let toDate: Int64
     let minBudget: Int
     let maxBudget: Int
-    let destinations: [String]
+    var destinations: [String]
     let allowOtherDestinations: Bool
     var participants: [Participant]? = nil
 }
