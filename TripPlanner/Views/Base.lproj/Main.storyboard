@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -285,7 +284,7 @@
                                 <rect key="frame" x="0.0" y="172" width="393" height="1203"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shH-pz-NRS" userLabel="Scroll Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="589"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="717"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="isQ-y8-gau" userLabel="When View">
                                                 <rect key="frame" x="8" y="8" width="377" height="176"/>
@@ -378,7 +377,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beR-6C-Qzt" userLabel="Where View">
-                                                <rect key="frame" x="8" y="358" width="377" height="124"/>
+                                                <rect key="frame" x="8" y="358" width="377" height="252"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LGl-Qj-5o1">
                                                         <rect key="frame" x="8" y="8" width="44" height="44"/>
@@ -391,26 +390,46 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7V-ZK-7Gf">
-                                                        <rect key="frame" x="8" y="60" width="361" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <menu key="menu" id="bXV-nm-skm">
-                                                            <menuOptions key="menuOptions" singleSelection="YES"/>
-                                                        </menu>
-                                                        <state key="normal" title="Seleccionar destino"/>
-                                                        <buttonConfiguration key="configuration" style="tinted" title="Seleccionar destino">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
-                                                        </buttonConfiguration>
-                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QdE-fT-nWB">
+                                                        <rect key="frame" x="0.0" y="52" width="377" height="200"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="aNw-eq-E6B"/>
+                                                        </constraints>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Destination Cell" textLabel="aHB-Bw-iLq" style="IBUITableViewCellStyleDefault" id="by1-GV-5nh" customClass="DestinationViewCell" customModule="TripPlanner" customModuleProvider="target">
+                                                                <rect key="frame" x="20" y="55.333332061767578" width="337" height="51"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="by1-GV-5nh" id="rxI-We-245">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="293" height="51"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aHB-Bw-iLq">
+                                                                            <rect key="frame" x="16" y="0.0" width="269" height="51"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </tableViewCellContentView>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Ptr-Bc-d8R" id="xsD-32-EVH"/>
+                                                        </connections>
+                                                    </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="124" id="qfQ-Wp-qQB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QdE-fT-nWB" secondAttribute="trailing" id="6Mp-MZ-aoR"/>
+                                                    <constraint firstItem="QdE-fT-nWB" firstAttribute="leading" secondItem="beR-6C-Qzt" secondAttribute="leading" id="RT9-jQ-LcN"/>
+                                                    <constraint firstItem="QdE-fT-nWB" firstAttribute="top" secondItem="beR-6C-Qzt" secondAttribute="top" constant="52" id="Vya-We-rzw"/>
+                                                    <constraint firstAttribute="bottom" secondItem="QdE-fT-nWB" secondAttribute="bottom" id="p2Y-O3-RVZ"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNc-kp-kyZ">
-                                                <rect key="frame" x="136.66666666666666" y="490" width="119.99999999999997" height="35"/>
+                                                <rect key="frame" x="136.66666666666666" y="618" width="119.99999999999997" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="dfi-8t-Zgq"/>
                                                 </constraints>
@@ -463,10 +482,11 @@
                     <connections>
                         <outlet property="budgetLabel" destination="56o-RY-dg1" id="1cK-41-KZO"/>
                         <outlet property="budgetSlider" destination="LrQ-W7-rp4" id="oMq-V2-oA6"/>
-                        <outlet property="destinationButton" destination="k7V-ZK-7Gf" id="T2r-Jj-UH8"/>
+                        <outlet property="destinationTableView" destination="QdE-fT-nWB" id="Bie-VZ-HvZ"/>
                         <outlet property="fromDatePicker" destination="y4b-jT-8Cz" id="uqS-jR-GDd"/>
                         <outlet property="maxBudgetLabel" destination="ugZ-Ia-2b4" id="Vsg-aV-mZU"/>
                         <outlet property="minBudgetLabel" destination="fwC-7X-oeZ" id="wGh-HC-bbo"/>
+                        <outlet property="tableViewHeightConstraint" destination="aNw-eq-E6B" id="ORD-9p-lgN"/>
                         <outlet property="toDatePicker" destination="Tb0-5q-okJ" id="uPR-US-uKi"/>
                     </connections>
                 </viewController>
@@ -1264,31 +1284,31 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.75294117647058822" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38039215686274508" green="0.33333333333333331" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

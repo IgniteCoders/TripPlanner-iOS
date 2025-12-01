@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class VoteViewController: UIViewController {
+class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var trip: Trip!
     var participant: Participant!
@@ -24,12 +24,16 @@ class VoteViewController: UIViewController {
     @IBOutlet weak var maxBudgetLabel: UILabel!
     @IBOutlet weak var budgetLabel: UILabel!
     
-    @IBOutlet weak var destinationButton: UIButton!
+    @IBOutlet weak var destinationTableView: UITableView!
+    @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
+    
+    //@IBOutlet weak var destinationButton: UIButton!
     var otherDestinationTextField: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
         fromDatePicker.minimumDate = Date(milliseconds: trip.fromDate)
@@ -44,7 +48,11 @@ class VoteViewController: UIViewController {
         budgetSlider.maximumValue = Float(trip.maxBudget)
         budgetSlider.value = Float(trip.minBudget)
         
-        var menuItems: [UIAction] = []
+        destinationTableView.dataSource = self
+        destinationTableView.delegate = self
+        destinationTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+        
+        /*var menuItems: [UIAction] = []
         for destination in trip.destinations {
             let destinationAction = UIAction(title: destination, image: nil) { (action) in
                 self.destinationButton.setTitle(destination, for: .normal)
@@ -77,25 +85,45 @@ class VoteViewController: UIViewController {
             destinationButton.setTitle(participant.destination!, for: .normal)
             let index = trip.destinations.firstIndex(of: participant.destination!)!
             (destinationButton.menu?.children[index] as? UIAction)?.state = .on
-        }
+        }*/
         
     }
     
-    func showOtherDestinationAlert() {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trip.destinations.count + (trip.allowOtherDestinations ? 1 : 0)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = destinationTableView.dequeueReusableCell(withIdentifier: "Destination Cell", for: indexPath) as! DestinationViewCell
+        if (indexPath.row == trip.destinations.count) {
+            cell.render(with: "Otro")
+        } else {
+            cell.render(with: trip.destinations[indexPath.row])
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.row == trip.destinations.count) {
+            self.showOtherDestinationAlert(indexPath)
+        }
+    }
+    
+    func showOtherDestinationAlert(_ indexPath: IndexPath) {
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Destino", message: "Propon otro destino", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Otro destino"
         }
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: {_ in
+            self.destinationTableView.deselectRow(at: indexPath, animated: true)
+            self.destinationTableView.cellForRow(at: indexPath)?.textLabel?.text = "Otro"
+            alert.dismiss(animated: true)
+        }))
         alert.addAction(UIAlertAction(title: "Añadir", style: .default, handler: {_ in
             let newDestination = self.otherDestinationTextField.text!
-            self.destinationButton.setTitle(newDestination, for: .normal)
+            self.destinationTableView.cellForRow(at: indexPath)?.textLabel?.text = newDestination
             self.selectedDestination = newDestination
-        }))
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: {_ in
-            (self.destinationButton.menu?.children.last as? UIAction)?.state = .off
-            self.destinationButton.setTitle("Seleccionar destino", for: .normal)
-            alert.dismiss(animated: true)
         }))
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
@@ -113,7 +141,7 @@ class VoteViewController: UIViewController {
         let budget = Int(budgetSlider.value)
         let destination = selectedDestination
         
-        if destinationButton.menu?.selectedElements.first == nil {
+        if destinationTableView.indexPathForSelectedRow == nil {
             showMessage(message: "Selecione un destino")
             return
         }
@@ -127,12 +155,10 @@ class VoteViewController: UIViewController {
             do {
                 let db = Firestore.firestore()
                 
-                if trip.allowOtherDestinations &&
-                    destinationButton.menu?.selectedElements.first?.title == (destinationButton.menu?.children.last as? UIAction)?.title {
+                if trip.allowOtherDestinations && destinationTableView.indexPathForSelectedRow!.row == trip.destinations.count {
                     trip.destinations.append(selectedDestination!)
                     try db.collection("Trips").document(trip.id).setData(from: trip)
                 }
-                
                 
                 try db.collection("Participants").document(participant!.id!).setData(from: participant)
                 
@@ -147,5 +173,15 @@ class VoteViewController: UIViewController {
             }
         }
     }
-
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+         if(keyPath == "contentSize") {
+             if let newvalue = change?[.newKey] {
+                 DispatchQueue.main.async {
+                     let newsize  = newvalue as! CGSize
+                     self.tableViewHeightConstraint.constant = newsize.height
+                 }
+             }
+         }
+     }
 }
