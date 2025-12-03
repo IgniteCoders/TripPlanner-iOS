@@ -10,6 +10,10 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class CreateTripViewController: UIViewController {
+    
+    @IBOutlet var keyboardConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var cardViews: [UIView]!
 
     @IBOutlet weak var nameTextField: UITextField!
 
@@ -27,8 +31,16 @@ class CreateTripViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardViews.forEach{ view in
+            view.roundCorners(radius: 32)
+            view.setBorder(width: 1, color: UIColor.separator.cgColor)
+        }
 
         // Do any additional setup after loading the view.
+        
+        keyboardConstraint.isActive = false
+        registerForKeyboardNotifications()
     }
     
     @IBAction func addDestination(_ sender: Any) {
@@ -94,6 +106,14 @@ class CreateTripViewController: UIViewController {
         if segue.identifier == "Navigate To Summary" {
             (segue.destination as! ShareTripViewController).trip = sender as? Trip
         }
+    }
+    
+    override func keyboardWillShow(_ notification: Notification) {
+        keyboardConstraint.isActive = true
+    }
+    
+    override func keyboardWillHide(_ notification: Notification) {
+        keyboardConstraint.isActive = false
     }
 
 }

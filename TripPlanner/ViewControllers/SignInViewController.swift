@@ -12,6 +12,8 @@ import GoogleSignIn
 import FirebaseFirestore
 
 class SignInViewController: UIViewController {
+    
+    @IBOutlet var keyboardConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var usernameTextField: UITextField!
     
@@ -23,6 +25,9 @@ class SignInViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             self.performSegue(withIdentifier: "Navigate To Home", sender: nil)
         }
+        
+        keyboardConstraint.isActive = false
+        registerForKeyboardNotifications()
     }
     
     @IBAction func signIn(_ sender: Any) {
@@ -128,5 +133,12 @@ class SignInViewController: UIViewController {
             self.showMessage(message: "We sent you an email for reset your password")
         }
     }
+    
+    override func keyboardWillShow(_ notification: Notification) {
+        keyboardConstraint.isActive = true
+    }
+    
+    override func keyboardWillHide(_ notification: Notification) {
+        keyboardConstraint.isActive = false
+    }
 }
-

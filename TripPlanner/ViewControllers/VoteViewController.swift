@@ -16,6 +16,8 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var selectedDestination: String? = nil
     
+    @IBOutlet var cardViews: [UIView]!
+    
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
 
@@ -27,12 +29,16 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var destinationTableView: UITableView!
     @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
     
-    //@IBOutlet weak var destinationButton: UIButton!
     var otherDestinationTextField: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardViews.forEach{ view in
+            view.roundCorners(radius: 32)
+            view.setBorder(width: 1, color: UIColor.separator.cgColor)
+        }
         
 
         // Do any additional setup after loading the view.
@@ -52,26 +58,6 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
         destinationTableView.delegate = self
         destinationTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         
-        /*var menuItems: [UIAction] = []
-        for destination in trip.destinations {
-            let destinationAction = UIAction(title: destination, image: nil) { (action) in
-                self.destinationButton.setTitle(destination, for: .normal)
-                self.selectedDestination = destination
-            }
-            menuItems.append(destinationAction)
-        }
-        
-        if trip.allowOtherDestinations {
-            let otherAction = UIAction(title: "Otro", image: nil) { (action) in
-                self.showOtherDestinationAlert()
-            }
-            menuItems.append(otherAction)
-        }
-
-        let menu = UIMenu(title: "Destinos", options: .singleSelection, children: menuItems)
-
-        destinationButton.menu = menu
-        destinationButton.showsMenuAsPrimaryAction = true
         
         participant = trip.participants?.first(where: { $0.userId == Auth.auth().currentUser!.uid })
         
@@ -82,11 +68,9 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
             budgetSlider.value = Float(participant.budget!)
             budgetLabel.text = "\(participant.budget!) €"
             
-            destinationButton.setTitle(participant.destination!, for: .normal)
             let index = trip.destinations.firstIndex(of: participant.destination!)!
-            (destinationButton.menu?.children[index] as? UIAction)?.state = .on
-        }*/
-        
+            destinationTableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,6 +90,8 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.row == trip.destinations.count) {
             self.showOtherDestinationAlert(indexPath)
+        } else {
+            self.selectedDestination = trip.destinations[indexPath.row]
         }
     }
     
@@ -132,7 +118,11 @@ class VoteViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func budgetChanged(_ sender: UISlider) {
-        budgetLabel.text = "\(Int(sender.value)) €"
+        let step = 10 as Float
+        let roundedValue = roundf((sender.value) / 10)
+        let value = roundedValue * step
+        budgetLabel.text = "\(Int(value)) €"
+        budgetSlider.value = value
     }
     
     @IBAction func sendVote(_ sender: Any) {

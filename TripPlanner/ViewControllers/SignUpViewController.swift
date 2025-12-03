@@ -11,6 +11,8 @@ import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet var keyboardConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
@@ -30,6 +32,9 @@ class SignUpViewController: UIViewController {
         if let maxDate = calendar.date(byAdding: .year, value: -18, to: today) {
             birthDatePicker.maximumDate = maxDate
         }
+        
+        keyboardConstraint.isActive = false
+        registerForKeyboardNotifications()
     }
     
     @IBAction func signUp(_ sender: Any) {
@@ -83,5 +88,13 @@ class SignUpViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    override func keyboardWillShow(_ notification: Notification) {
+        keyboardConstraint.isActive = true
+    }
+    
+    override func keyboardWillHide(_ notification: Notification) {
+        keyboardConstraint.isActive = false
     }
 }

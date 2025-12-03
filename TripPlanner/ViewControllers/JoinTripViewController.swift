@@ -26,6 +26,12 @@ class JoinTripViewController: UIViewController {
         let tripId = tripCodeTextField.text!
         let userId = Auth.auth().currentUser!.uid
         
+        if tripId.isEmpty {
+            alert.dismiss(animated: false)
+            showMessage(message: "Introduce el código del viaje")
+            return
+        }
+        
         
         Task {
             do {
@@ -45,14 +51,14 @@ class JoinTripViewController: UIViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        alert.dismiss(animated: true)
+                        alert.dismiss(animated: false)
                         self.showMessage(message: "El código de viaje introducido no es valido.")
                     }
                 }
             } catch let error {
                 print("Error writing user to Firestore: \(error)")
                 DispatchQueue.main.async {
-                    alert.dismiss(animated: true)
+                    alert.dismiss(animated: false)
                     self.showMessage(message: error.localizedDescription)
                 }
                 return
