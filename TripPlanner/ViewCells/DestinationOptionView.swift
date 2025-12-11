@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class DestinationView: UIView {
+class DestinationOptionView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
     

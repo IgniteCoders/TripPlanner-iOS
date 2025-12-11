@@ -50,8 +50,8 @@ class CreateTripViewController: UIViewController {
         destinationView.titleLabel.text = destination
         destinationsStackView.addArrangedSubview(destinationView)*/
         
-        let nib = UINib(nibName: "DestinationViewCell", bundle: nil)
-        let view = nib.instantiate(withOwner: nil, options: nil).first as! DestinationView
+        let nib = UINib(nibName: "DestinationOptionView", bundle: nil)
+        let view = nib.instantiate(withOwner: nil, options: nil).first as! DestinationOptionView
         view.titleLabel.text = destination
         view.onRemoveClick = {
             self.destinations.remove(at: self.destinations.firstIndex(of: destination)!)
@@ -115,5 +115,8 @@ class CreateTripViewController: UIViewController {
     override func keyboardWillHide(_ notification: Notification) {
         keyboardConstraint.isActive = false
     }
-
+    
+    deinit {
+        unregisterForKeyboardNotifications()
+    }
 }

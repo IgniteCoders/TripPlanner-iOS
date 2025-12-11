@@ -87,10 +87,10 @@ class MyTripsViewController: UIViewController, UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let voteViewController = segue.destination as! VoteViewController
+        let summaryViewController = segue.destination as! SummaryViewController
         let indexPath = tableView.indexPathForSelectedRow!
         let trip = trips[indexPath.row]
-        voteViewController.trip = trip
+        summaryViewController.trip = trip
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

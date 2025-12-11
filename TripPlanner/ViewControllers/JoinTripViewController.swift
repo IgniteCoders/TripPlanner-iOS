@@ -20,15 +20,15 @@ class JoinTripViewController: UIViewController {
     }
     
     @IBAction func joinTrip(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "Uniendote al viaje...", preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
+        //let alert = UIAlertController(title: nil, message: "Uniendote al viaje...", preferredStyle: .alert)
+        //present(alert, animated: true, completion: nil)
         
         let tripId = tripCodeTextField.text!
         let userId = Auth.auth().currentUser!.uid
         
         if tripId.isEmpty {
-            alert.dismiss(animated: false)
-            showMessage(message: "Introduce el código del viaje")
+            //alert.dismiss(animated: false)
+            showMessage(message: "Introduce el código del viaje", haptic: true)
             return
         }
         
@@ -46,19 +46,19 @@ class JoinTripViewController: UIViewController {
                     
                     // Success
                     DispatchQueue.main.async {
-                        alert.dismiss(animated: true)
+                        //alert.dismiss(animated: true)
                         // TODO: navigate to trip
                     }
                 } else {
                     DispatchQueue.main.async {
-                        alert.dismiss(animated: false)
+                        //alert.dismiss(animated: false)
                         self.showMessage(message: "El código de viaje introducido no es valido.")
                     }
                 }
             } catch let error {
                 print("Error writing user to Firestore: \(error)")
                 DispatchQueue.main.async {
-                    alert.dismiss(animated: false)
+                    //alert.dismiss(animated: false)
                     self.showMessage(message: error.localizedDescription)
                 }
                 return
@@ -66,7 +66,9 @@ class JoinTripViewController: UIViewController {
         }
     }
     
-
+    @IBAction func hideKeyboard(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

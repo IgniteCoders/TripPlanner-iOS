@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DestinationVotesView" customModule="TripPlanner" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DestinationVotesView" customModule="TripPlanner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8g0-Iq-hIn">
+                    <rect key="frame" x="0.0" y="12" width="41.333333333333336" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="votes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJg-Hq-8pU">
+                    <rect key="frame" x="351" y="12" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9lS-V0-Qvl">
+                    <rect key="frame" x="0.0" y="41" width="393" height="4"/>
+                    <color key="tintColor" name="AccentColor"/>
+                </progressView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="qJg-Hq-8pU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="7vo-X1-a1d"/>
+                <constraint firstAttribute="bottom" secondItem="9lS-V0-Qvl" secondAttribute="bottom" constant="8" id="8Ju-zF-QGR"/>
+                <constraint firstAttribute="trailing" secondItem="qJg-Hq-8pU" secondAttribute="trailing" id="B38-uJ-vhM"/>
+                <constraint firstItem="9lS-V0-Qvl" firstAttribute="top" secondItem="8g0-Iq-hIn" secondAttribute="bottom" constant="8" symbolic="YES" id="RZK-P2-hQ9"/>
+                <constraint firstItem="8g0-Iq-hIn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="jKM-0O-IWw"/>
+                <constraint firstAttribute="trailing" secondItem="9lS-V0-Qvl" secondAttribute="trailing" id="jxT-ZY-Iyq"/>
+                <constraint firstItem="9lS-V0-Qvl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nbo-XV-cJ6"/>
+                <constraint firstItem="8g0-Iq-hIn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uoQ-wz-elF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="8g0-Iq-hIn" id="f0D-4a-fNH"/>
+                <outlet property="votesLabel" destination="qJg-Hq-8pU" id="dvF-U6-Nor"/>
+                <outlet property="votesProgressView" destination="9lS-V0-Qvl" id="zVa-hs-5yE"/>
+            </connections>
+            <point key="canvasLocation" x="-83.206106870229007" y="-172.18309859154931"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.5690000057220459" blue="0.57499998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
