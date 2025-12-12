@@ -8,7 +8,8 @@
 import UIKit
 import FirebaseAuth
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController, UITableViewDataSource {
+    
     
     var trip: Trip!
     var participant: Participant!
@@ -20,11 +21,17 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var budgetView: UIView!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var destinationsStackView: UIStackView!
+    
+    @IBOutlet weak var votesTableView: UITableView!
+    @IBOutlet var tableViewHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         votesView.isHidden = true
+        
+        votesTableView.dataSource = self
+        votesTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         
         cardViews.forEach{ view in
             view.roundCorners(radius: 32)
@@ -71,6 +78,17 @@ class SummaryViewController: UIViewController {
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trip.participants?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Vote Cell", for: indexPath) as! VoteViewCell
+        let participant = trip.participants![indexPath.row]
+        cell.configure(with: participant)
+        return cell
+    }
+    
     @IBAction func segmentedIndexChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -96,5 +114,15 @@ class SummaryViewController: UIViewController {
         }
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+         if(keyPath == "contentSize") {
+             if let newvalue = change?[.newKey] {
+                 DispatchQueue.main.async {
+                     let newsize  = newvalue as! CGSize
+                     self.tableViewHeightConstraint.constant = newsize.height
+                 }
+             }
+         }
+     }
 
 }
